@@ -1,5 +1,4 @@
 <template>
-  adasdasd
   <router-view/>
 </template>
 
