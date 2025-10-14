@@ -2,35 +2,58 @@
   <div id="drag-container">
     <div id="spin-container">
       <!-- Add your images (or video) here -->
-      <img class="img-item" src="https://images.pexels.com/photos/206395/pexels-photo-206395.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-           alt="">
-      <img class="img-item"
-          src="https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-          alt="">
-      <img class="img-item"
-          src="https://images.pexels.com/photos/1382731/pexels-photo-1382731.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-          alt="">
-      <img class="img-item"
-          src="https://images.pexels.com/photos/1758144/pexels-photo-1758144.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-          alt="">
-      <img class="img-item"
-          src="https://images.pexels.com/photos/1382734/pexels-photo-1382734.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-          alt="">
-      <img class="img-item"
-          src="https://images.pexels.com/photos/1462636/pexels-photo-1462636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-          alt="">
-      <img class="img-item"
-           src="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-           alt="">
+      <div class="img-item">
+        <img
+             src="https://images.pexels.com/photos/206395/pexels-photo-206395.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+             alt="">
+      </div>
+      <div class="img-item">
+        <img
+             src="https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+             alt="">
+        <video autoplay loop preload="auto" width="100%" height="100%">
+          <source
+              :src="sparkles"
+              type="video/mp4">
+        </video>
+      </div>
+      <div class="img-item">
+        <img
+             src="https://images.pexels.com/photos/1382731/pexels-photo-1382731.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+             alt="">
+      </div>
+      <div class="img-item">
+        <img
+             src="https://images.pexels.com/photos/1758144/pexels-photo-1758144.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+             alt="">
+      </div>
+      <div class="img-item">
+        <img
+             src="https://images.pexels.com/photos/1382734/pexels-photo-1382734.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+             alt="">
+      </div>
+      <div class="img-item">
+        <img
+             src="https://images.pexels.com/photos/1462636/pexels-photo-1462636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+             alt="">
+      </div>
+      <div class="img-item">
+        <img
+             src="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+             alt="">
+      </div>
+      <div>
+        <video autoplay loop preload="auto" :src="sparkles" type="video/mp4" width="100%" height="100%"/>
+      </div>
       <!-- Example image with link -->
       <a target="_blank" href="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg">
 
       </a>
 
       <!-- Example add video  -->
-      <video controls autoplay="autoplay" loop>
+      <video class="video-item" controls autoplay loop>
         <source
-            src="https://player.vimeo.com/external/322244668.sd.mp4?s=338c48ac2dfcb1d4c0689968b5baf94eee6ca0c1&profile_id=165&oauth2_token_id=57447761"
+            :src="sparkles"
             type="video/mp4">
       </video>
 
@@ -43,11 +66,16 @@
     <div id="ground"></div>
   </div>
 
-  <div id="music-container"></div>
+
+
+  <div id="music-container">
+
+  </div>
 </template>
 <script setup lang="ts">
 import {onMounted} from "vue";
 import PocketItem from "@/views/vietnamese-women-day/components/PocketItem.vue";
+import sparkles from "@/assets/videos/sparkles.mp4"
 
 let radius = 360; // how big of the radius
 let autoRotate = true; // auto rotate or not
@@ -73,23 +101,23 @@ let bgMusicControls = true; // Show UI music control
 onMounted(() => {
   setTimeout(init, 1000);
 
-  var odrag = document.getElementById('drag-container');
-  var ospin = document.getElementById('spin-container');
-  var aImg = ospin?.querySelectorAll('.img-item') ?? [];
-  var aVid = ospin?.getElementsByTagName('video') ?? [];
-  var aEle = [...aImg, ...aVid]; // combine 2 arrays
+  let odrag = document.getElementById('drag-container');
+  let ospin = document.getElementById('spin-container');
+  let aImg = ospin?.querySelectorAll('.img-item') ?? [];
+  let aVid = ospin?.querySelectorAll('.video-item') ?? [];
+  let aEle = [...aImg, ...aVid]; // combine 2 arrays
 
 // Size of images
   ospin.style.width = imgWidth + "px";
   ospin.style.height = imgHeight + "px";
 
 // Size of ground - depend on radius
-  var ground = document.getElementById('ground');
+  let ground = document.getElementById('ground');
   ground.style.width = radius * 3 + "px";
   ground.style.height = radius * 3 + "px";
 
   function init(delayTime) {
-    for (var i = 0; i < aEle.length; i++) {
+    for (let i = 0; i < aEle.length; i++) {
       aEle[i].style.transform = "rotateY(" + (i * (360 / aEle.length)) + "deg) translateZ(" + radius + "px)";
       aEle[i].style.transition = "transform 1s";
       aEle[i].style.transitionDelay = delayTime || (aEle.length - i) / 4 + "s";
@@ -109,14 +137,14 @@ onMounted(() => {
     ospin.style.animationPlayState = (yes ? 'running' : 'paused');
   }
 
-  var sX, sY, nX, nY, desX = 0,
+  let sX, sY, nX, nY, desX = 0,
       desY = 0,
       tX = 0,
       tY = 10;
 
 // auto spin
   if (autoRotate) {
-    var animationName = (rotateSpeed > 0 ? 'spin' : 'spinRevert');
+    let animationName = (rotateSpeed > 0 ? 'spin' : 'spinRevert');
     ospin.style.animation = `${animationName} ${Math.abs(rotateSpeed)}s infinite linear`;
   }
 
@@ -177,6 +205,7 @@ onMounted(() => {
 })
 </script>
 <style scoped>
+
 #drag-container, #spin-container {
   position: relative;
   display: -webkit-box;
@@ -189,7 +218,7 @@ onMounted(() => {
   transform: rotateX(-10deg);
 }
 
-#drag-container img, #drag-container video {
+#drag-container .img-item, #drag-container .video-item {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   position: absolute;
@@ -205,7 +234,25 @@ onMounted(() => {
   -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0005);
 }
 
-#drag-container img:hover, #drag-container video:hover {
+.img-item img {
+  width: 100%;
+  height: 100%;
+}
+
+.img-item video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+  opacity: 0.5; /* làm trong suốt */
+  pointer-events: none; /* để video không che click */
+  mix-blend-mode: color-dodge; /* hoặc overlay, lighten, multiply */
+}
+
+#drag-container .img-item:hover, #drag-container .video-item:hover {
   -webkit-box-shadow: 0 0 15px #fffd;
   box-shadow: 0 0 15px #fffd;
   -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0007);
