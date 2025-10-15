@@ -61,6 +61,7 @@
       </div>
 
       <div class="center-vertical" style="font-size: 28px">
+        <span>Love you</span>
         <record-player-item/>
       </div>
     </div>
@@ -261,21 +262,30 @@ onMounted(() => {
 }
 
 #drag-container p {
-  font-family: Serif;
   position: absolute;
-  top: 100%;
+  top: -100px;
   left: 50%;
   -webkit-transform: translate(-50%, -50%) rotateX(90deg);
   transform: translate(-50%, -50%) rotateX(90deg);
+  z-index: 0;
+  color: #ffffff;
 }
 
 .center-vertical {
-  font-family: Serif;
   position: absolute;
   top: 100%;
   left: 50%;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   transform: translate(-50%, -50%) rotateX(90deg);
+
+  span {
+    position: absolute;
+    top: -50px;
+    left: auto;
+  }
 }
 
 .center-item {
@@ -289,6 +299,7 @@ onMounted(() => {
   animation:  fadeIn 1.5s ease-in forwards;
   animation-delay: 3s;
   opacity: 0;
+  z-index: 21;
 }
 
 .fade-in {
