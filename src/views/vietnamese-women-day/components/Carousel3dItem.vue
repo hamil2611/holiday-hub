@@ -6,6 +6,11 @@
         <img
              src="https://images.pexels.com/photos/206395/pexels-photo-206395.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
              alt="">
+        <video  loop preload="auto" width="100%" height="100%" autoplay muted>
+          <source
+              :src="sparkles"
+              type="video/mp4">
+        </video>
       </div>
       <div class="img-item">
         <img
@@ -21,26 +26,51 @@
         <img
              src="https://images.pexels.com/photos/1382731/pexels-photo-1382731.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
              alt="">
+        <video  loop preload="auto" width="100%" height="100%" autoplay muted>
+          <source
+              :src="sparkles"
+              type="video/mp4">
+        </video>
       </div>
       <div class="img-item">
         <img
              src="https://images.pexels.com/photos/1758144/pexels-photo-1758144.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
              alt="">
+        <video  loop preload="auto" width="100%" height="100%" autoplay muted>
+          <source
+              :src="sparkles"
+              type="video/mp4">
+        </video>
       </div>
       <div class="img-item">
         <img
              src="https://images.pexels.com/photos/1382734/pexels-photo-1382734.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
              alt="">
+        <video  loop preload="auto" width="100%" height="100%" autoplay muted>
+          <source
+              :src="sparkles"
+              type="video/mp4">
+        </video>
       </div>
       <div class="img-item">
         <img
              src="https://images.pexels.com/photos/1462636/pexels-photo-1462636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
              alt="">
+        <video  loop preload="auto" width="100%" height="100%" autoplay muted>
+          <source
+              :src="sparkles"
+              type="video/mp4">
+        </video>
       </div>
       <div class="img-item">
         <img
              src="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
              alt="">
+        <video  loop preload="auto" width="100%" height="100%" autoplay muted>
+          <source
+              :src="sparkles"
+              type="video/mp4">
+        </video>
       </div>
       <!-- Example image with link -->
       <a target="_blank" href="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg">
@@ -217,8 +247,8 @@ onMounted(() => {
   margin: auto;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  -webkit-transform: rotateX(-10deg);
-  transform: rotateX(-10deg);
+  -webkit-transform: rotateX(-5deg);
+  transform: rotateX(-5deg);
 }
 
 #drag-container .img-item, #drag-container .video-item {
