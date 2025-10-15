@@ -11,7 +11,7 @@
         <img
              src="https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
              alt="">
-        <video autoplay loop preload="auto" width="100%" height="100%">
+        <video  loop preload="auto" width="100%" height="100%" autoplay muted>
           <source
               :src="sparkles"
               type="video/mp4">
@@ -42,9 +42,6 @@
              src="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
              alt="">
       </div>
-      <div>
-        <video autoplay loop preload="auto" :src="sparkles" type="video/mp4" width="100%" height="100%"/>
-      </div>
       <!-- Example image with link -->
       <a target="_blank" href="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg">
 
@@ -62,25 +59,29 @@
       <div class="center-item">
         <PocketItem/>
       </div>
+
+      <div class="center-vertical" style="font-size: 28px">
+        <record-player-item/>
+      </div>
     </div>
     <div id="ground"></div>
   </div>
 
 
 
-  <div id="music-container">
-
-  </div>
+  <div id="music-container"></div>
 </template>
 <script setup lang="ts">
 import {onMounted} from "vue";
 import PocketItem from "@/views/vietnamese-women-day/components/PocketItem.vue";
 import sparkles from "@/assets/videos/sparkles.mp4"
+import RecordPlayerItem from "@/views/vietnamese-women-day/components/RecordPlayerItem.vue";
 
-let radius = 360; // how big of the radius
+const width = window.innerWidth;
+let radius = window.innerWidth < 360 ? window.innerWidth - 20 : 360; // how big of the radius
 let autoRotate = true; // auto rotate or not
 let rotateSpeed = -60; // unit: seconds/360 degrees
-let imgWidth = 200; // width of images (unit: px)
+let imgWidth = window.innerWidth <360 ? 100 :200; // width of images (unit: px)
 let imgHeight = 230; // height of images (unit: px)
 
 // Link of background music - set 'null' if you dont want to play background music
@@ -202,6 +203,7 @@ onMounted(() => {
     radius += d;
     init(1);
   };
+
 })
 </script>
 <style scoped>
@@ -248,7 +250,7 @@ onMounted(() => {
   object-fit: cover;
   z-index: 2;
   opacity: 0.5; /* làm trong suốt */
-  pointer-events: none; /* để video không che click */
+  //pointer-events: none; /* để video không che click */
   mix-blend-mode: color-dodge; /* hoặc overlay, lighten, multiply */
 }
 
@@ -265,17 +267,42 @@ onMounted(() => {
   left: 50%;
   -webkit-transform: translate(-50%, -50%) rotateX(90deg);
   transform: translate(-50%, -50%) rotateX(90deg);
-  color: #fff;
+}
+
+.center-vertical {
+  font-family: Serif;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+
+  transform: translate(-50%, -50%) rotateX(90deg);
 }
 
 .center-item {
   font-family: Serif;
   position: absolute;
-  top: 0;
+  top: -30px;
   left: 50%;
   -webkit-transform: translate(-50%, -50%) ;
   transform: translate(-50%, -50%) ;
   color: #fff;
+  animation:  fadeIn 1.5s ease-in forwards;
+  animation-delay: 3s;
+  opacity: 0;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.2s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 #ground {

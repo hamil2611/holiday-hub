@@ -14,5 +14,7 @@ import Carousel3dItem from "@/views/vietnamese-women-day/components/Carousel3dIt
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background: linear-gradient(135deg, #fde9ef 0%, #f6c9d4 100%);
+  overflow: hidden;
 }
 </style>

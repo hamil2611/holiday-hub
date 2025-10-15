@@ -21,10 +21,10 @@
       </div>
     </div>
   </div>
-  <div class="reset">
-    <button id="open">Open</button>
-    <button id="reset">Reset</button>
-  </div>
+<!--  <div class="reset">-->
+<!--    <button id="open">Open</button>-->
+<!--    <button id="reset">Reset</button>-->
+<!--  </div>-->
 </template>
 
 <script setup lang="ts">
@@ -38,16 +38,20 @@ onMounted(() => {
   const btn_reset = document.getElementById("reset");
 
   envelope?.addEventListener('click', (e) => {
-    open();
+    if (envelope?.classList.contains('open')) {
+      close()
+    } else {
+      open();
+    }
   })
 
-  btn_open?.addEventListener('click', (e) => {
-    open();
-  })
-
-  btn_reset?.addEventListener('click', (e) => {
-    close();
-  })
+  // btn_open?.addEventListener('click', (e) => {
+  //   open();
+  // })
+  //
+  // btn_reset?.addEventListener('click', (e) => {
+  //   close();
+  // })
 
   function open() {
     envelope?.classList.add("open")
@@ -57,7 +61,6 @@ onMounted(() => {
   function close() {
     envelope?.classList.add("close");
     envelope?.classList.remove("open")
-
   }
 
 })
@@ -71,8 +74,8 @@ $color-bg           : #FFD1DC;
 $color-heart        : #D00000;
 
 $env-border-radius  : 10px;
-$env-width          : 360px;
-$env-height         : 240px;
+$env-width          : 15rem;
+$env-height         : 160px;
 $heart-width        : 50px;
 
 @use "sass:math";
@@ -94,12 +97,14 @@ $heart-width        : 50px;
   background-color: $color-flap;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
+
 .front {
   position: absolute;
   width: 0;
   height: 0;
   z-index: 3;
 }
+
 .flap {
   border-left: math.div($env-width, 2) solid transparent;
   border-right: math.div($env-width, 2)solid transparent;
