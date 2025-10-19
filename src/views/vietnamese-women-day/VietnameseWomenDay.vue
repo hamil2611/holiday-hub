@@ -1,6 +1,6 @@
 <template>
   <div id="container" class="page-container">
-    <Carousel3dItem/>
+    <pocket-item/>
   </div>
 </template>
 
@@ -8,6 +8,7 @@
 import { onMounted } from 'vue';
 import { TweenLite, TweenMax, Linear, Sine } from 'gsap';
 import Carousel3dItem from "@/views/vietnamese-women-day/components/Carousel3dItem.vue";
+import PocketItem from "@/views/vietnamese-women-day/components/PocketItem.vue";
 
 onMounted(() => {
   var falling = true;

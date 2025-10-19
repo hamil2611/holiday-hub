@@ -1,25 +1,50 @@
 <template>
-  <div class="envlope-wrapper">
-    <div id="envelope" class="close">
-      <div class="front flap">
-        <div class="circle">
-          <img :src="heart" alt="" width="50" height="50" style="position: absolute; top: -30px; left: -25px;">
+  <div class="container">
+    <div class="envlope-wrapper">
+      <div id="envelope" class="close" >
+        <div  class="front flap">
+          <div class="circle">
+            <img :src="heart" alt="" width="50" height="50" style="position: absolute; top: -30px; left: -25px;">
+          </div>
+        </div>
+
+        <div class="front pocket"></div>
+        <div ref="letterRef" :class="{'letter': true, 'letter-detail': isDetail}">
+          <span v-if="!isDetail" style="font-size: 24px; color: #8B3A3A;">Gửi em bé iu của anhhh !!!</span>
+          <el-scrollbar v-else max-height="250px" style="width: 100%;">
+            <div  style="font-size: 12px; text-align: left; display: flex; align-items: flex-start; justify-content: flex-start; flex-direction: column; width: 100%">
+              <span>Gửi em yêu của anh 💌!!!</span>
+              <span>Chúc mừng ngày phụ nữ Việt Nam 20-10!!! Ngày đặt biệt này anh muốn gửi tất cả những lời chúc tốt đẹp đến em iu của anh.
+                Em là người con gái mà anh yêu nhất 💕 và cũng là nơi mà anh cảm thấy được bình yên nhất 🌸. Anh yêu em 💐💞!!</span>
+              <span>Chúc em luôn mạnh mẽ, tự tin và rạng rỡ – như chính người con gái tuyệt vời mà anh may mắn có được. 🌷</span>
+            </div>
+          </el-scrollbar>
+          <!--        <div class="words line1"></div>-->
+          <!--        <div class="words line2"></div>-->
+          <!--        <div class="words line3"></div>-->
+          <!--        <div class="words line4"></div>-->
+        </div>
+        <div v-if="!isDetail"  class="flower-wrapper">
+          <img class="flower-1" :src="flower" alt="">
+          <img class="flower-2" :src="flower" alt="">
+        </div>
+        <div class="hearts">
+          <div class="heart a1"></div>
+          <div class="heart a2"></div>
+          <div class="heart a3"></div>
+        </div>
+        <div v-if="isDetail" class="two-flowers">
+          <div style="position: absolute">
+            <img :src="twoFlower" alt="" style="height: 150px;">
+          </div>
+        </div>
+        <div v-if="isDetail" class="picture">
+          <img :src="suan" alt="">
         </div>
       </div>
 
-      <div class="front pocket"></div>
-      <div class="letter">
-        <div class="words line1"></div>
-        <div class="words line2"></div>
-        <div class="words line3"></div>
-        <div class="words line4"></div>
-      </div>
-      <div class="hearts">
-        <div class="heart a1"></div>
-        <div class="heart a2"></div>
-        <div class="heart a3"></div>
-      </div>
     </div>
+
   </div>
 <!--  <div class="reset">-->
 <!--    <button id="open">Open</button>-->
@@ -28,9 +53,15 @@
 </template>
 
 <script setup lang="ts">
+import flower from "@/assets/images/flower.png"
+import suan from "@/assets/images/suan.jpg"
+import twoFlower from "@/assets/images/two-flowers.png"
 import heart from "@/assets/images/heart.png"
 
-import {onMounted} from "vue";
+import {onMounted, ref} from "vue";
+const letterRef = ref();
+
+const isDetail = ref(false);
 
 onMounted(() => {
   const envelope = document.getElementById("envelope");
@@ -59,26 +90,37 @@ onMounted(() => {
   }
 
   function close() {
+    isDetail.value = false;
     envelope?.classList.add("close");
     envelope?.classList.remove("open")
   }
-
+ letterRef.value?.addEventListener("click", (e) => {
+   e.preventDefault();
+   e.stopPropagation();
+   isDetail.value = true;
+ })
 })
 </script>
 
 <style scoped lang="scss">
-$color-env          : #FFD1DC;
-$color-env2         :#FFD1DC;
-$color-flap         : darken($color-env, 20%);
-$color-bg           : #FFD1DC;
-$color-heart        : #D00000;
+$color-env          : #FFB7B2;
+$color-env2         : #FFB7B2;
+$color-flap         : darken($color-env, 15%);
+$color-bg           : #FFECEE;
+$color-heart        : #FF9AA2;
 
 $env-border-radius  : 10px;
-$env-width          : 15rem;
-$env-height         : 160px;
+$env-width          : 300px;
+$env-height         : 180px;
 $heart-width        : 50px;
 
 @use "sass:math";
+
+.container {
+  position: absolute;
+  top: 35%;
+  left: calc(50% - 150px);
+}
 
 .circle {
   z-index: 7;
@@ -93,7 +135,6 @@ $heart-width        : 50px;
   border-bottom-right-radius: $env-border-radius;
   margin-left: auto;
   margin-right: auto;
-  top: 150px;
   background-color: $color-flap;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
@@ -130,7 +171,7 @@ $heart-width        : 50px;
 }
 .letter {
   position: relative;
-  background-color: #fff;
+  background: #fff;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
@@ -138,11 +179,37 @@ $heart-width        : 50px;
   top: 5%;
   border-radius: $env-border-radius;
   box-shadow: 0 2px 26px rgba(0,0,0,.12);
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: .3s ease-in-out all;
+  max-height: 350px;
+  &:hover {
+    background: #FFC5C8 !important;
+  }
 }
+
+.letter-detail {
+  transition: all 1s ease-in-out;
+  transform: translateY(-130px) !important;
+
+  &::after {
+    display: none;
+  }
+
+  &:hover {
+    background: #fff !important;
+  }
+}
+
+
 .letter:after {
   content: '';
   position: absolute;
-  top: 0;
+  top: 40%;
   bottom: 0;
   left: 0;
   right: 0;
@@ -190,9 +257,20 @@ $heart-width        : 50px;
 }
 
 .open .letter {
-  transform: translateY(- math.div($env-height, 3));
-  transition: transform .4s 1.6s ease, z-index .6s ease 1s;
+  transition: all .4s ease;
   z-index: 2;
+  animation: 0.4s letter-scale forwards;
+  animation-delay: 1.6s ;
+}
+
+@keyframes letter-scale {
+  from {
+
+  }
+
+  to {
+    transform: translateY(- math.div($env-height, 3));
+  }
 }
 
 .open .circle {
@@ -319,7 +397,7 @@ $heart-width        : 50px;
     top: 0;
   }
   100% {
-    top: -600px;
+    top: -350px;
   }
 }
 @keyframes slideUp {
@@ -327,7 +405,7 @@ $heart-width        : 50px;
     top: 0;
   }
   100% {
-    top: -600px;
+    top: -350px;
   }
 }
 @-webkit-keyframes sideSway {
@@ -350,12 +428,17 @@ $heart-width        : 50px;
 body {
   background-color: $color-bg;
 }
+
 .envlope-wrapper {
-  height: ($env-height + 200px);
+  height: ($env-height + 100px);
+  display: flex;
+  padding-top: 65px;
 }
+
 .reset {
   text-align: center;
 }
+
 .reset button {
   font-weight: 800;
   font-style: normal;
@@ -378,5 +461,153 @@ body {
 .reset button:hover {
   background-color: $color-env;
   color: #fff;
+}
+
+.flower-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+.flower-wrapper > :nth-child(1) {
+  height: 200px;
+  position: absolute;
+  top: -90px;
+  right: -50px;
+  opacity: 0;
+
+}
+
+.flower-wrapper > :nth-child(2) {
+  height: 200px;
+  position: absolute;
+  top: -110px;
+  left: -70px;
+  opacity: 0;
+
+
+}
+
+
+.open .flower-1 {
+  animation: grow 2.4s cubic-bezier(.22,.9,.3,1) forwards;
+  animation-delay: 2.5s;
+}
+
+.open .flower-2 {
+  animation: grow1 2.4s cubic-bezier(.22,.9,.3,1) forwards;
+  animation-delay: 2.5s;
+}
+
+.close .flower-1 {
+  animation: shrink .5s cubic-bezier(.22,.9,.3,1) forwards;
+}
+
+.close .flower-2 {
+  animation: shrink1 .5s cubic-bezier(.22,.9,.3,1) forwards;
+}
+
+@keyframes grow {
+  0% {
+    transform: translateY(100px) scale(0.2) rotate(2deg);
+    opacity: 0;
+  }
+  40% {
+    transform: translateY(0) scale(1.05) rotate(-2deg);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(-4px) scale(1);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes grow1 {
+  0% {
+    transform: translateY(100px) scale(0.2) rotate(2deg) scaleX(-1);
+    opacity: 0;
+  }
+  40% {
+    transform: translateY(0) scale(1.05) rotate(-2deg) scaleX(-1);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(-4px) scale(1) scaleX(-1);
+  }
+  100% {
+    opacity: 1 ;
+    transform: scaleX(-1);
+  }
+}
+
+@keyframes shrink {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(-4px) scale(1);
+  }
+  60% {
+    transform: translateY(0) scale(1.05) rotate(-2deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100px) scale(0.2) rotate(2deg);
+    opacity: 0;
+  }
+}
+
+@keyframes shrink1 {
+  0% {
+    transform: translateY(0) scale(1 ) scaleX(-1);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(-4px) scale(1) scaleX(-1);
+  }
+  60% {
+    transform: translateY(0) scale(1.05) rotate(-2deg) scaleX(-1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100px) scale(0.2) rotate(2deg) scaleX(-1);
+    opacity: 0;
+  }
+}
+
+.two-flowers {
+  position: absolute;
+  top: 0;
+  left: -25px;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  transform: rotate(-25deg);
+}
+
+.picture {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 25%;
+  right: 0;
+  bottom: 20px;
+  z-index: 5;
+  transform: rotate(15deg);
+  padding: 10px 8px 20px 8px;
+  background: #fff;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
 }
 </style>
