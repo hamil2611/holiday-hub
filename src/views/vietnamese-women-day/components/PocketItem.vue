@@ -10,7 +10,13 @@
 
         <div class="front pocket"></div>
         <div ref="letterRef" :class="{'letter': true, 'letter-detail': isDetail}">
-          <span v-if="!isDetail" style="font-size: 24px; color: #8B3A3A;">Gửi em bé iu của anhhh !!!</span>
+          <span v-if="!isDetail" style="font-size: 22px; color: #8B3A3A;">
+            Gửi em bé iu của anhhh !!!
+            <br/>
+            <span style="font-size: 13px; color: #8B3A3A;">
+              Nhấn vào để xem nha em iu 😎 !!!
+            </span>
+          </span>
           <el-scrollbar v-else max-height="250px" style="width: 100%;">
             <div  style="font-size: 13px; text-align: left; display: flex; align-items: flex-start; justify-content: flex-start; flex-direction: column; width: 100%">
               <span>Gửi em yêu của anh 💌!!!</span>
