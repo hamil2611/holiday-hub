@@ -12,7 +12,7 @@
         <div ref="letterRef" :class="{'letter': true, 'letter-detail': isDetail}">
           <span v-if="!isDetail" style="font-size: 24px; color: #8B3A3A;">Gửi em bé iu của anhhh !!!</span>
           <el-scrollbar v-else max-height="250px" style="width: 100%;">
-            <div  style="font-size: 12px; text-align: left; display: flex; align-items: flex-start; justify-content: flex-start; flex-direction: column; width: 100%">
+            <div  style="font-size: 13px; text-align: left; display: flex; align-items: flex-start; justify-content: flex-start; flex-direction: column; width: 100%">
               <span>Gửi em yêu của anh 💌!!!</span>
               <span>Chúc mừng ngày phụ nữ Việt Nam 20-10!!! Ngày đặt biệt này anh muốn gửi tất cả những lời chúc tốt đẹp đến em iu của anh.
                 Em là người con gái mà anh yêu nhất 💕 và cũng là nơi mà anh cảm thấy được bình yên nhất 🌸. Anh yêu em 💐💞!!</span>
@@ -118,7 +118,7 @@ $heart-width        : 50px;
 
 .container {
   position: absolute;
-  top: 35%;
+  top: 30%;
   left: calc(50% - 150px);
 }
 
