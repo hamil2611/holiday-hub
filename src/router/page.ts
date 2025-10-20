@@ -5,6 +5,13 @@ const pages = {
         meta: {
             name: 'Vietnamese Women\'s Day'
         }
+    },
+    khanhLinh: {
+        name: 'KhanhLinh',
+        path: '/khanh-linh',
+        meta: {
+            name: 'Khánh Linh',
+        }
     }
 }
 

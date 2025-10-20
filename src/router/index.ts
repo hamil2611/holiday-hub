@@ -2,6 +2,7 @@ import {createRouter, createWebHistory, RouteRecordRaw} from "vue-router";
 import DefaultLayout from "@/commons/layout/DefaultLayout.vue";
 import pages from "@/router/page";
 import VietnameseWomenDay from "@/views/vietnamese-women-day/VietnameseWomenDay.vue";
+import KhanhLinhVietnameseWomenDay from "@/views/vietnamese-women-day/KhanhLinhVietnameseWomenDay.vue";
 
 const routes: Readonly<RouteRecordRaw[]> = [
     {
@@ -11,6 +12,10 @@ const routes: Readonly<RouteRecordRaw[]> = [
             {
                 ...pages.vietnameseWomenDay,
                 component: VietnameseWomenDay,
+            },
+            {
+                ...pages.khanhLinh,
+                component: KhanhLinhVietnameseWomenDay
             }
         ]
     }
